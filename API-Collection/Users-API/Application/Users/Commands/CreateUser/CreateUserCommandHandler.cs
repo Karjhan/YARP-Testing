@@ -1,5 +1,5 @@
 ﻿using Commons.Primitives;
-using Users_API.Application.Abstractions;
+using Reports_API.Application.Abstractions;
 using Users_API.Domain.Abstractions;
 using Users_API.Domain.Entities;
 using Users_API.Domain.Primitives;

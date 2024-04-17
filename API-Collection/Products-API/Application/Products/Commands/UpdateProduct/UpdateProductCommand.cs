@@ -1,5 +1,4 @@
-﻿using Products_API.Application.Abstractions;
-using Products_API.Application.Specifications.DTOs;
+﻿using Reports_API.Application.Abstractions;
 
 namespace Products_API.Application.Products.Commands.UpdateProduct;
 

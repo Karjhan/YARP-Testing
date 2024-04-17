@@ -1,7 +1,7 @@
 ﻿using Commons.Exceptions;
 using Commons.Primitives;
-using Products_API.Application.Abstractions;
 using Products_API.Domain.Abstractions;
+using Reports_API.Application.Abstractions;
 
 namespace Products_API.Application.Specifications.Commands.RemoveSpecificationsFromProduct;
 

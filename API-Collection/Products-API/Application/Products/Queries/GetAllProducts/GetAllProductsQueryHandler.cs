@@ -1,8 +1,8 @@
 ﻿using Commons.Primitives;
-using Products_API.Application.Abstractions;
 using Products_API.Application.Products.DTOs;
 using Products_API.Application.Specifications.DTOs;
 using Products_API.Domain.Abstractions;
+using Reports_API.Application.Abstractions;
 
 namespace Products_API.Application.Products.Queries.GetAllProducts;
 

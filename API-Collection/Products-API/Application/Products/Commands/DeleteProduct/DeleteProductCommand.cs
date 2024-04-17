@@ -1,4 +1,4 @@
-﻿using Products_API.Application.Abstractions;
+﻿using Reports_API.Application.Abstractions;
 
 namespace Products_API.Application.Products.Commands.DeleteProduct;
 

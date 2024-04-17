@@ -29,6 +29,21 @@ services:
     networks:
       - proxybackend
 
+  # Reports-API
+  reports-api-svc:
+    image: 'yarp-reports-api:localhost'
+    depends_on:
+      - postgres
+      - seq
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - EFConfiguration__ConnectionString=${POSTGRES_CONNECTION_STRING}
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - 5003:80
+    networks:
+      - proxybackend
+
   # Postgres
   postgres:
     container_name: yarp-container-pg

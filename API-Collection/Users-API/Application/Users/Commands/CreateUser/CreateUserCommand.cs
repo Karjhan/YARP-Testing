@@ -1,4 +1,4 @@
-﻿using Users_API.Application.Abstractions;
+﻿using Reports_API.Application.Abstractions;
 
 namespace Users_API.Application.Users.Commands.CreateUser;
 

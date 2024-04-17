@@ -1,49 +1,54 @@
+using Carter;
+using Microsoft.EntityFrameworkCore;
 using Reports_API;
+using Reports_API.Application.Extensions;
+using Reports_API.Infrastructure.DataContexts;
+using Reports_API.Infrastructure.Extensions;
+using Reports_API.Presentation.Extensions;
+using Reports_API.Presentation.Middlewares;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Add logging with Serilog
+builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
+
+// Add services to the container
+builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddApplicationServices();
+builder.Services.AddPresentationServices();
+builder.Services.AddSwaggerDocumentation();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.UseMiddleware<RequestLogContextMiddleware>();
+
+app.UseSerilogRequestLogging();
+
+app.MapApplicationHealthChecks();
+
+app.UseSwaggerDocumentation();
+
+app.MapCarter();
+
+// Auto applying new migrations at build+run, or creating the DB otherwise
+using (var scope = app.Services.CreateScope())
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<ApplicationContext>();
+    var logger = services.GetRequiredService<ILogger<Program>>();
 
-app.MapGet("/weatherforecast", () =>
+    try
     {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
-
-app.Run();
-
-namespace Reports_API
-{
-    record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+        logger.LogInformation("Starting Context Initializer.");
+        await context.Database.MigrateAsync();
+    }
+    catch (Exception e)
     {
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        logger.LogInformation("An error occured during migration!");
     }
 }
+
+app.Run();

@@ -1,6 +1,6 @@
 ﻿using Commons.Exceptions;
 using Commons.Primitives;
-using Users_API.Application.Abstractions;
+using Reports_API.Application.Abstractions;
 using Users_API.Domain.Abstractions;
 
 namespace Users_API.Application.Users.Commands.DeleteUser;

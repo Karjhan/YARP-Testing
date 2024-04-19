@@ -20,7 +20,10 @@ builder.Services.AddSwaggerDocumentation();
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
+if (app.Configuration.GetValue("EnforceHttpsRedirection", true))
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseMiddleware<RequestLogContextMiddleware>();
 

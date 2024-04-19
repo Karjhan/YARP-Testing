@@ -1,12 +1,14 @@
-﻿using Commons.Exceptions;
+﻿using AutoMapper;
+using Commons.Exceptions;
 using Commons.Primitives;
 using Reports_API.Application.Abstractions;
 using Reports_API.Application.Reports.DTOs;
 using Reports_API.Domain.Abstractions;
+using Reports_API.Domain.Entities;
 
 namespace Reports_API.Application.Reports.Queries.GetReportById;
 
-public class GetReportByIdQueryHandler(IReportRepository reportRepository) : IQueryHandler<GetReportByIdQuery, ReportResponse>
+public class GetReportByIdQueryHandler(IReportRepository reportRepository, IMapper _mapper) : IQueryHandler<GetReportByIdQuery, ReportResponse>
 {
     public async Task<Result<ReportResponse>> Handle(GetReportByIdQuery request, CancellationToken cancellationToken)
     {
@@ -20,7 +22,7 @@ public class GetReportByIdQueryHandler(IReportRepository reportRepository) : IQu
             ));
         }
 
-        var response = new ReportResponse(report.Id, report.Title, report.Description);
+        var response = _mapper.Map<Report, ReportResponse>(report);
         return response;
     }
 }

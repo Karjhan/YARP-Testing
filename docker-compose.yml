@@ -2,45 +2,78 @@ services:
   # Users-API
   users-api-svc:
     image: 'yarp-users-api:localhost'
+    build: 
+      context: ./API-Collection
+      dockerfile: Users-API/Dockerfile
     depends_on:
       - postgres
       - seq
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - EFConfiguration__ConnectionString=${POSTGRES_CONNECTION_STRING}
-      - ASPNETCORE_URLS=http://+:80
+      - Serilog__WriteTo__0__Args__serverUrl=${SEQ_SERVER_URL}
+      - ASPNETCORE_HTTPS_PORT=5051
+      - Kestrel__Certificates__Default__Password=password
+      - Kestrel__Certificates__Default__Path=/app/Certificate/localhost.pfx
+      - EnforceHttpsRedirection=true
     ports:
-      - 5001:80
+      - 5080:5080
+      - 5443:5443
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https
     networks:
       - proxybackend
 
   # Products-API
   products-api-svc:
     image: 'yarp-products-api:localhost'
+    build: 
+      context: ./API-Collection
+      dockerfile: Products-API/Dockerfile
     depends_on:
       - postgres
       - seq
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - EFConfiguration__ConnectionString=${POSTGRES_CONNECTION_STRING}
-      - ASPNETCORE_URLS=http://+:80
+      - Serilog__WriteTo__0__Args__serverUrl=${SEQ_SERVER_URL}
+      - ASPNETCORE_HTTPS_PORT=5052
+      - Kestrel__Certificates__Default__Password=password
+      - Kestrel__Certificates__Default__Path=/app/Certificate/localhost.pfx
+      - EnforceHttpsRedirection=true
     ports:
-      - 5002:80
+      - 6080:6080
+      - 6443:6443
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https
     networks:
       - proxybackend
 
   # Reports-API
   reports-api-svc:
     image: 'yarp-reports-api:localhost'
+    build: 
+      context: ./API-Collection
+      dockerfile: Reports-API/Dockerfile
     depends_on:
       - postgres
       - seq
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - EFConfiguration__ConnectionString=${POSTGRES_CONNECTION_STRING}
-      - ASPNETCORE_URLS=http://+:80
+      - Serilog__WriteTo__0__Args__serverUrl=${SEQ_SERVER_URL}
+      - ASPNETCORE_HTTPS_PORT=5053
+      - Kestrel__Certificates__Default__Password=password
+      - Kestrel__Certificates__Default__Path=/app/Certificate/localhost.pfx
+      - EnforceHttpsRedirection=true
     ports:
-      - 5003:80
+      - 7080:7080
+      - 7443:7443
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https
     networks:
       - proxybackend
 

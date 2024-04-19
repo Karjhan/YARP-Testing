@@ -1,8 +1,10 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 5001
+EXPOSE 80
+EXPOSE 443
+EXPOSE 5080
+EXPOSE 5443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -17,6 +19,8 @@ RUN dotnet build "Users-API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "Users-API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+WORKDIR /app
+COPY ./Users-API/Certificate/localhost.pfx /app/publish/Certificate/localhost.pfx
 
 FROM base AS final
 WORKDIR /app

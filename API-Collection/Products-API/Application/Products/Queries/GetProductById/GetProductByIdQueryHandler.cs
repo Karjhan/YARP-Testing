@@ -1,13 +1,14 @@
-﻿using Commons.Exceptions;
+﻿using AutoMapper;
+using Commons.Exceptions;
 using Commons.Primitives;
 using Products_API.Application.Products.DTOs;
-using Products_API.Application.Specifications.DTOs;
 using Products_API.Domain.Abstractions;
+using Products_API.Domain.Entities;
 using Reports_API.Application.Abstractions;
 
 namespace Products_API.Application.Products.Queries.GetProductById;
 
-public class GetProductByIdQueryHandler(IProductRepository productRepository) : IQueryHandler<GetProductByIdQuery, ProductResponse>
+public class GetProductByIdQueryHandler(IProductRepository productRepository, IMapper _mapper) : IQueryHandler<GetProductByIdQuery, ProductResponse>
 {
     public async Task<Result<ProductResponse>> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
     {
@@ -21,11 +22,7 @@ public class GetProductByIdQueryHandler(IProductRepository productRepository) : 
             ));
         }
 
-        var response = new ProductResponse(
-            product.Id,
-            product.Name,
-            product.Price,
-            product.Specifications.Select(spec => new SpecificationResponse(spec.Title, spec.Value)));
+        var response = _mapper.Map<Product, ProductResponse>(product);
         return response;
     }
 }

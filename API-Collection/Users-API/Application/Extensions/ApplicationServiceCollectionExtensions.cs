@@ -14,6 +14,9 @@ public static class ApplicationServiceCollectionExtensions
             config.NotificationPublisher = new TaskWhenAllPublisher();
         });
         
+        // Add AutoMapper
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        
         return services;
     }    
 }

@@ -25,7 +25,7 @@ public class UserModule : CarterModule
             var result = await sender.Send(command);
 
             return result.IsSuccess ? Results.Ok() : Results.BadRequest(result.Error);
-        });
+        }).WithTags("user");
 
         app.MapGet("/{id}", async (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
@@ -34,7 +34,7 @@ public class UserModule : CarterModule
             var response = await sender.Send(query, cancellationToken);
 
             return response.IsSuccess ? Results.Ok(response.Value) : Results.BadRequest(response.Error);
-        });
+        }).WithTags("user");
         
         app.MapGet("/all", async (ISender sender, CancellationToken cancellationToken) =>
         {
@@ -43,7 +43,7 @@ public class UserModule : CarterModule
             var response = await sender.Send(query, cancellationToken);
 
             return response.IsSuccess ? Results.Ok(response.Value) : Results.BadRequest(response.Error);
-        });
+        }).WithTags("user");
         
         app.MapDelete("/{id}", async (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
@@ -52,7 +52,7 @@ public class UserModule : CarterModule
             var response = await sender.Send(command, cancellationToken);
 
             return response.IsSuccess ? Results.Ok() : Results.BadRequest(response.Error);
-        });
+        }).WithTags("user");
         
         app.MapPut("/{id}", async (Guid id, UpdateUserRequest request, ISender sender, CancellationToken cancellationToken) =>
         {
@@ -67,6 +67,6 @@ public class UserModule : CarterModule
             var response = await sender.Send(command, cancellationToken);
 
             return response.IsSuccess ? Results.Ok() : Results.BadRequest(response.Error);
-        });
+        }).WithTags("user");
     }
 }

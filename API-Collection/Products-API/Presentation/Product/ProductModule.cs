@@ -27,7 +27,7 @@ public class ProductModule : CarterModule
             var result = await sender.Send(command);
 
             return result.IsSuccess ? Results.Ok() : Results.BadRequest(result.Error);
-        });
+        }).WithTags("products");
 
         app.MapGet("/{id}", async (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
@@ -36,7 +36,7 @@ public class ProductModule : CarterModule
             var response = await sender.Send(query, cancellationToken);
 
             return response.IsSuccess ? Results.Ok(response.Value) : Results.BadRequest(response.Error);
-        });
+        }).WithTags("products");
         
         app.MapGet("/all", async (ISender sender, CancellationToken cancellationToken) =>
         {
@@ -45,7 +45,7 @@ public class ProductModule : CarterModule
             var response = await sender.Send(query, cancellationToken);
 
             return response.IsSuccess ? Results.Ok(response.Value) : Results.BadRequest(response.Error);
-        });
+        }).WithTags("products");
         
         app.MapDelete("/{id}", async (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
@@ -54,7 +54,7 @@ public class ProductModule : CarterModule
             var response = await sender.Send(command, cancellationToken);
 
             return response.IsSuccess ? Results.Ok() : Results.BadRequest(response.Error);
-        });
+        }).WithTags("products");
         
         app.MapPut("/{id}", async (Guid id, UpdateProductRequest request, ISender sender, CancellationToken cancellationToken) =>
         {
@@ -68,7 +68,7 @@ public class ProductModule : CarterModule
             var response = await sender.Send(command, cancellationToken);
 
             return response.IsSuccess ? Results.Ok() : Results.BadRequest(response.Error);
-        });
+        }).WithTags("products");
 
         app.MapPost("/{id}/specifications/add", async (Guid id, AddSpecificationsToProductRequest request, ISender sender, CancellationToken cancellationToken) =>
         {
@@ -80,7 +80,7 @@ public class ProductModule : CarterModule
             var response = await sender.Send(command, cancellationToken);
 
             return response.IsSuccess ? Results.Ok() : Results.BadRequest(response.Error);
-        });
+        }).WithTags("specifications");
         
         app.MapPost("/{id}/specifications/remove", async (Guid id, RemoveSpecificationsFromProductRequest request, ISender sender, CancellationToken cancellationToken) =>
         {
@@ -92,6 +92,6 @@ public class ProductModule : CarterModule
             var response = await sender.Send(command, cancellationToken);
 
             return response.IsSuccess ? Results.Ok() : Results.BadRequest(response.Error);
-        });
+        }).WithTags("specifications");
     }    
 }

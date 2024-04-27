@@ -1,4 +1,35 @@
 services: 
+   # API Gateway
+  api-gateway-svc:
+    image: 'yarp-api-gateway:localhost'
+    build: 
+      context: ./API-Collection
+      dockerfile: YARP-Gateway/Dockerfile
+    depends_on:
+      - users-api-svc
+      - products-api-svc
+      - reports-api-svc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Serilog__WriteTo__0__Args__serverUrl=${SEQ_SERVER_URL}
+      - Kestrel__Certificates__Default__Password=password
+      - Kestrel__Certificates__Default__Path=/app/Certificate/localhost.pfx
+      - EnforceHttpsRedirection=true
+      - ReverseProxy__Clusters__users-api-cluster__Destinations__destination1__Address=${USERS_API_URL} 
+      - ReverseProxy__Clusters__products-api-cluster__Destinations__destination1__Address=${PRODUCTS_API_URL}
+      - ReverseProxy__Clusters__reports-api-cluster__Destinations__destination1__Address=${REPORTS_API_URL}
+      - Logging__LogLevel__Default=Debug
+      - Logging__LogLevel__Yarp=Debug
+      - Logging__LogLevel__Microsoft.AspNetCore=Debug
+    ports:
+      - 10080:10080
+      - 10443:10443
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https
+    networks:
+      - proxybackend
+
   # Users-API
   users-api-svc:
     image: 'yarp-users-api:localhost'

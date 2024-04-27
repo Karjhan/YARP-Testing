@@ -6,6 +6,11 @@ using YARP_Gateway.Extensions.YARP;
 
 var builder = WebApplication.CreateBuilder(args);
 
+IConfigurationRoot configurationRoot = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .AddEnvironmentVariables()
+    .Build();
+
 // Add logging with Serilog
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
@@ -13,8 +18,7 @@ builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Confi
 builder.Services.AddYARP(builder.Configuration);
 builder.Services.AddHealthCheckServices();
 builder.Services.AddSwaggerDocumentation();
-builder.Services.AddCustomAuthorization();
-builder.Services.AddAuthentication();
+builder.Services.AddCustomSecurity(builder.Configuration);
 
 var app = builder.Build();
 

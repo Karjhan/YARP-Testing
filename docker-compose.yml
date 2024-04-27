@@ -21,6 +21,7 @@ services:
       - Logging__LogLevel__Default=Debug
       - Logging__LogLevel__Yarp=Debug
       - Logging__LogLevel__Microsoft.AspNetCore=Debug
+      - IdentityServerConfiguration__IdentityUrl=${IDENTITY_API_URL}
     ports:
       - 10080:10080
       - 10443:10443

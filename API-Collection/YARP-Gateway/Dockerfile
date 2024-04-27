@@ -19,7 +19,7 @@ FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "YARP-Gateway.csproj" -c %BUILD_CONFIGURATION% -o /app/publish /p:UseAppHost=false
 WORKDIR /app
-COPY ./Users-API/Certificate/localhost.pfx /app/publish/Certificate/localhost.pfx
+COPY ./YARP-Gateway/Certificate/localhost.pfx /app/publish/Certificate/localhost.pfx
 
 FROM base AS final
 WORKDIR /app

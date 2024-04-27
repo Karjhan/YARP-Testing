@@ -1,4 +1,5 @@
 using Serilog;
+using YARP_Gateway.Extensions.Authorization;
 using YARP_Gateway.Extensions.HealthCheck;
 using YARP_Gateway.Extensions.Swagger;
 using YARP_Gateway.Extensions.YARP;
@@ -12,13 +13,8 @@ builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Confi
 builder.Services.AddYARP(builder.Configuration);
 builder.Services.AddHealthCheckServices();
 builder.Services.AddSwaggerDocumentation();
-// builder.Services.AddAuthorization(options =>
-// {
-//     options.AddPolicy("bearerPolicy", policy =>
-//     {
-//         policy.AddAuthenticationSchemes()
-//     })
-// });
+builder.Services.AddCustomAuthorization();
+builder.Services.AddAuthentication();
 
 var app = builder.Build();
 
@@ -26,6 +22,10 @@ if (app.Configuration.GetValue("EnforceHttpsRedirection", true))
 {
     app.UseHttpsRedirection();
 }
+
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapReverseProxy();
 

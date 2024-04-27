@@ -30,6 +30,31 @@ services:
     networks:
       - proxybackend
 
+  # IdentityServer-API
+  identity-api-svc:
+    image: 'yarp-identity-api:localhost'
+    build: 
+      context: ./API-Collection
+      dockerfile: IdentityProvider-API/Dockerfile
+    depends_on:
+      - postgres
+      - seq
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - EFConfiguration__ConnectionString=${POSTGRES_CONNECTION_STRING}
+      - Serilog__WriteTo__0__Args__serverUrl=${SEQ_SERVER_URL}
+      - Kestrel__Certificates__Default__Password=password
+      - Kestrel__Certificates__Default__Path=/app/Certificate/localhost.pfx
+      - EnforceHttpsRedirection=true
+    ports:
+      - 9080:9080
+      - 9443:9443
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https
+    networks:
+      - proxybackend
+
   # Users-API
   users-api-svc:
     image: 'yarp-users-api:localhost'

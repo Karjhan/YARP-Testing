@@ -16,6 +16,7 @@ public static class Config
         {
             new ApiScope("scope1"),
             new ApiScope("scope2"),
+            new ApiScope("scope3"),
         };
 
     public static IEnumerable<Client> Clients =>

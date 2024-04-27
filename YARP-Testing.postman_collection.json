@@ -420,6 +420,111 @@
 			]
 		},
 		{
+			"name": "Identity-API",
+			"item": [
+				{
+					"name": "Identity-API HC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{identity-api-base-url}}{{identity-api-healthCheck}}",
+							"host": [
+								"{{identity-api-base-url}}{{identity-api-healthCheck}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Identity-API User Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{identity-api-base-url}}{{identity-api-userInfoPath}}",
+							"host": [
+								"{{identity-api-base-url}}{{identity-api-userInfoPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Identity-API Get Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();\r",
+									"pm.collectionVariables.set(\"access_token\", response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "{{identity-api-testUsername}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{identity-api-testPassword}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "postman",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "NotASecret",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid profile",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{identity-api-base-url}}{{identity-api-tokenPath}}",
+							"host": [
+								"{{identity-api-base-url}}{{identity-api-tokenPath}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "API-Gateway",
 			"item": [
 				{
@@ -999,6 +1104,41 @@
 		{
 			"key": "api-gateway-healthCheck",
 			"value": "healthCheck",
+			"type": "string"
+		},
+		{
+			"key": "identity-api-base-url",
+			"value": "https://localhost:9443/",
+			"type": "string"
+		},
+		{
+			"key": "identity-api-healthCheck",
+			"value": "healthCheck",
+			"type": "string"
+		},
+		{
+			"key": "identity-api-userInfoPath",
+			"value": "connect/userinfo",
+			"type": "string"
+		},
+		{
+			"key": "identity-api-tokenPath",
+			"value": "connect/token",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "identity-api-testUsername",
+			"value": "bob",
+			"type": "string"
+		},
+		{
+			"key": "identity-api-testPassword",
+			"value": "Pass123$",
 			"type": "string"
 		}
 	]

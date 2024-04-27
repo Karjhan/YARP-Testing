@@ -1,8 +1,11 @@
 using Duende.IdentityServer;
+using HealthChecks.UI.Client;
+using IdentityProvider_API.Infrastructure;
 using IdentityProvider_API.Infrastructure.Configuration;
 using IdentityProvider_API.Infrastructure.DataContexts;
 using IdentityProvider_API.Models;
 using IdentityProvider_API.Services;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -17,6 +20,11 @@ internal static class HostingExtensions
         
         builder.Services.Configure<EFConfiguration>(configuration.GetSection(nameof(EFConfiguration)).Bind);
         var efConfiguration = configuration.GetSection(nameof(EFConfiguration)).Get<EFConfiguration>();
+        
+        // Add health checks
+        builder.Services.AddHealthChecks()
+            .AddCheck<ApplicationHealthCheck>("Identity-API")
+            .AddNpgSql(efConfiguration!.ConnectionString);
 
         builder.Services.AddDbContext<ApplicationContext>(options =>
             options.UseNpgsql(efConfiguration!.ConnectionString));
@@ -51,6 +59,8 @@ internal static class HostingExtensions
 
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
+        app.MapApplicationHealthChecks();
+        
         app.UseSerilogRequestLogging();
         
         if (app.Configuration.GetValue("EnforceHttpsRedirection", true))
@@ -73,4 +83,16 @@ internal static class HostingExtensions
 
         return app;
     }
+    
+    private static IEndpointConventionBuilder MapApplicationHealthChecks(this IEndpointRouteBuilder endpoints)
+    {
+        // All
+        var result = endpoints.MapHealthChecks("/healthCheck", new HealthCheckOptions
+        {
+            Predicate = _ => true,
+            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+        });
+
+        return result;
+    }  
 }

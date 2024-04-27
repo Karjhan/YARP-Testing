@@ -12,7 +12,6 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - EFConfiguration__ConnectionString=${POSTGRES_CONNECTION_STRING}
       - Serilog__WriteTo__0__Args__serverUrl=${SEQ_SERVER_URL}
-      - ASPNETCORE_HTTPS_PORT=5051
       - Kestrel__Certificates__Default__Password=password
       - Kestrel__Certificates__Default__Path=/app/Certificate/localhost.pfx
       - EnforceHttpsRedirection=true
@@ -38,7 +37,6 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - EFConfiguration__ConnectionString=${POSTGRES_CONNECTION_STRING}
       - Serilog__WriteTo__0__Args__serverUrl=${SEQ_SERVER_URL}
-      - ASPNETCORE_HTTPS_PORT=5052
       - Kestrel__Certificates__Default__Password=password
       - Kestrel__Certificates__Default__Path=/app/Certificate/localhost.pfx
       - EnforceHttpsRedirection=true
@@ -64,7 +62,6 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - EFConfiguration__ConnectionString=${POSTGRES_CONNECTION_STRING}
       - Serilog__WriteTo__0__Args__serverUrl=${SEQ_SERVER_URL}
-      - ASPNETCORE_HTTPS_PORT=5053
       - Kestrel__Certificates__Default__Password=password
       - Kestrel__Certificates__Default__Path=/app/Certificate/localhost.pfx
       - EnforceHttpsRedirection=true

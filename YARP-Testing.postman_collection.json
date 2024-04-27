@@ -1,0 +1,1005 @@
+{
+	"info": {
+		"_postman_id": "876f8a10-3721-4e95-87f3-f967ff580c0e",
+		"name": "YARP-Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23489460"
+	},
+	"item": [
+		{
+			"name": "Users-API",
+			"item": [
+				{
+					"name": "Users-API HC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{users-api-base-url}}{{users-api-healthCheck}}",
+							"host": [
+								"{{users-api-base-url}}{{users-api-healthCheck}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users-API All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{users-api-base-url}}{{users-api-usersPath}}/all",
+							"host": [
+								"{{users-api-base-url}}{{users-api-usersPath}}"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users-API Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{users-api-base-url}}{{users-api-usersPath}}/{{users-api-user-id}}",
+							"host": [
+								"{{users-api-base-url}}{{users-api-usersPath}}"
+							],
+							"path": [
+								"{{users-api-user-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users-API Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shortName\": \"John\",\r\n    \"longName\": \"Longdongia\",\r\n    \"description\": \"\",\r\n    \"age\": \"100\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{users-api-base-url}}{{users-api-usersPath}}",
+							"host": [
+								"{{users-api-base-url}}{{users-api-usersPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users-API Create Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shortName\": \"John\",\r\n    \"longName\": \"Longdongia The Second\",\r\n    \"description\": \"Who chose my name?\",\r\n    \"age\": \"1000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{users-api-base-url}}{{users-api-usersPath}}/{{users-api-usersPath}}",
+							"host": [
+								"{{users-api-base-url}}{{users-api-usersPath}}"
+							],
+							"path": [
+								"{{users-api-usersPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users-API Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{users-api-base-url}}{{users-api-usersPath}}/{{users-api-user-id}}",
+							"host": [
+								"{{users-api-base-url}}{{users-api-usersPath}}"
+							],
+							"path": [
+								"{{users-api-user-id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products-API",
+			"item": [
+				{
+					"name": "Products-API HC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{products-api-base-url}}{{products-api-healthCheck}}",
+							"host": [
+								"{{products-api-base-url}}{{products-api-healthCheck}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{products-api-base-url}}{{products-api-productsPath}}/all",
+							"host": [
+								"{{products-api-base-url}}{{products-api-productsPath}}"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Get By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{products-api-base-url}}{{products-api-productsPath}}/{{products-api-product-id}}",
+							"host": [
+								"{{products-api-base-url}}{{products-api-productsPath}}"
+							],
+							"path": [
+								"{{products-api-product-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Computer\",\r\n    \"price\": \"1000.99\",\r\n    \"quantity\": \"10\",\r\n    \"specifications\": [\r\n        {\r\n            \"title\": \"format\",\r\n            \"value\": \"ATX\"\r\n        },\r\n        {\r\n            \"title\": \"performance\",\r\n            \"value\": \"best\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{products-api-base-url}}{{products-api-productsPath}}",
+							"host": [
+								"{{products-api-base-url}}{{products-api-productsPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"New_Computer\",\r\n    \"price\": \"1500.99\",\r\n    \"quantity\": \"32\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{products-api-base-url}}{{products-api-productsPath}}/{{products-api-product-id}}",
+							"host": [
+								"{{products-api-base-url}}{{products-api-productsPath}}"
+							],
+							"path": [
+								"{{products-api-product-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{products-api-base-url}}{{products-api-productsPath}}/{{products-api-product-id}}",
+							"host": [
+								"{{products-api-base-url}}{{products-api-productsPath}}"
+							],
+							"path": [
+								"{{products-api-product-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Add Spec To Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"specifications\": [\r\n        {\r\n            \"title\": \"age\",\r\n            \"value\": \"2\"\r\n        },\r\n        {\r\n            \"title\": \"components\",\r\n            \"value\": \"10\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{products-api-base-url}}{{products-api-productsPath}}/{{products-api-product-id}}/specifications/add",
+							"host": [
+								"{{products-api-base-url}}{{products-api-productsPath}}"
+							],
+							"path": [
+								"{{products-api-product-id}}",
+								"specifications",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Delete Spec From Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"specificationTitles\": [\r\n        \"age\",\r\n        \"components\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{products-api-base-url}}{{products-api-productsPath}}/{{products-api-product-id}}/specifications/remove",
+							"host": [
+								"{{products-api-base-url}}{{products-api-productsPath}}"
+							],
+							"path": [
+								"{{products-api-product-id}}",
+								"specifications",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reports-API",
+			"item": [
+				{
+					"name": "Reports-API HC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{reports-api-base-url}}{{reports-api-healthCheck}}",
+							"host": [
+								"{{reports-api-base-url}}{{reports-api-healthCheck}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports-API All Reports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{reports-api-base-url}}{{reports-api-productsPath}}/all",
+							"host": [
+								"{{reports-api-base-url}}{{reports-api-productsPath}}"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports-API Get Report By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{reports-api-base-url}}{{reports-api-productsPath}}/{{reports-api-report-id}}",
+							"host": [
+								"{{reports-api-base-url}}{{reports-api-productsPath}}"
+							],
+							"path": [
+								"{{reports-api-report-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports-API Create Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"test-report\",\r\n    \"description\": \"first description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reports-api-base-url}}{{reports-api-productsPath}}",
+							"host": [
+								"{{reports-api-base-url}}{{reports-api-productsPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports-API Create Report",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"test-report\",\r\n    \"description\": \"second description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reports-api-base-url}}{{reports-api-productsPath}}/{{reports-api-report-id}}",
+							"host": [
+								"{{reports-api-base-url}}{{reports-api-productsPath}}"
+							],
+							"path": [
+								"{{reports-api-report-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports-API Delete Record",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{reports-api-base-url}}{{reports-api-productsPath}}/{{reports-api-report-id}}",
+							"host": [
+								"{{reports-api-base-url}}{{reports-api-productsPath}}"
+							],
+							"path": [
+								"{{reports-api-report-id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API-Gateway",
+			"item": [
+				{
+					"name": "Users-API-HC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-users-route}}/{{users-api-healthCheck}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-users-route}}"
+							],
+							"path": [
+								"{{users-api-healthCheck}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users-API All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-users-route}}/{{users-api-usersPath}}/all",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-users-route}}"
+							],
+							"path": [
+								"{{users-api-usersPath}}",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users-API Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-users-route}}/{{users-api-usersPath}}/{{users-api-user-id}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-users-route}}"
+							],
+							"path": [
+								"{{users-api-usersPath}}",
+								"{{users-api-user-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users-API Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shortName\": \"John\",\r\n    \"longName\": \"Longdongia\",\r\n    \"description\": \"\",\r\n    \"age\": \"100\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-users-route}}/{{users-api-usersPath}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-users-route}}"
+							],
+							"path": [
+								"{{users-api-usersPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users-API Create Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shortName\": \"John\",\r\n    \"longName\": \"Longdongia The Second\",\r\n    \"description\": \"Who chose my name?\",\r\n    \"age\": \"1000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-users-route}}/{{users-api-usersPath}}/{{users-api-usersPath}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-users-route}}"
+							],
+							"path": [
+								"{{users-api-usersPath}}",
+								"{{users-api-usersPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users-API Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-users-route}}/{{users-api-usersPath}}/{{users-api-user-id}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-users-route}}"
+							],
+							"path": [
+								"{{users-api-usersPath}}",
+								"{{users-api-user-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "____________________________________________________",
+					"request": {
+						"method": "OPTIONS",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API HC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-products-route}}/{{products-api-healthCheck}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-products-route}}"
+							],
+							"path": [
+								"{{products-api-healthCheck}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-products-route}}/{{products-api-productsPath}}/all",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-products-route}}"
+							],
+							"path": [
+								"{{products-api-productsPath}}",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Get By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-products-route}}/{{products-api-productsPath}}/{{products-api-product-id}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-products-route}}"
+							],
+							"path": [
+								"{{products-api-productsPath}}",
+								"{{products-api-product-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Create Product Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Computer\",\r\n    \"price\": \"1000.99\",\r\n    \"quantity\": \"10\",\r\n    \"specifications\": [\r\n        {\r\n            \"title\": \"format\",\r\n            \"value\": \"ATX\"\r\n        },\r\n        {\r\n            \"title\": \"performance\",\r\n            \"value\": \"best\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-products-route}}/{{products-api-productsPath}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-products-route}}"
+							],
+							"path": [
+								"{{products-api-productsPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Update Product Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"New_Computer\",\r\n    \"price\": \"1500.99\",\r\n    \"quantity\": \"32\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-products-route}}/{{products-api-productsPath}}/{{products-api-product-id}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-products-route}}"
+							],
+							"path": [
+								"{{products-api-productsPath}}",
+								"{{products-api-product-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-products-route}}/{{products-api-productsPath}}/{{products-api-product-id}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-products-route}}"
+							],
+							"path": [
+								"{{products-api-productsPath}}",
+								"{{products-api-product-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Add Spec To Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"specifications\": [\r\n        {\r\n            \"title\": \"age\",\r\n            \"value\": \"2\"\r\n        },\r\n        {\r\n            \"title\": \"components\",\r\n            \"value\": \"10\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-products-route}}/{{products-api-productsPath}}/{{products-api-product-id}}/specifications/add",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-products-route}}"
+							],
+							"path": [
+								"{{products-api-productsPath}}",
+								"{{products-api-product-id}}",
+								"specifications",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products-API Delete Spec From Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"specificationTitles\": [\r\n        \"age\",\r\n        \"components\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-products-route}}/{{products-api-productsPath}}/{{products-api-product-id}}/specifications/remove",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-products-route}}"
+							],
+							"path": [
+								"{{products-api-productsPath}}",
+								"{{products-api-product-id}}",
+								"specifications",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "____________________________________________________",
+					"request": {
+						"method": "OPTIONS",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Reports-API HC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-reports-route}}/{{reports-api-healthCheck}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-reports-route}}"
+							],
+							"path": [
+								"{{reports-api-healthCheck}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports-API All Reports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-reports-route}}/{{reports-api-productsPath}}/all",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-reports-route}}"
+							],
+							"path": [
+								"{{reports-api-productsPath}}",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports-API Get Report By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-reports-route}}/{{reports-api-productsPath}}/{{reports-api-report-id}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-reports-route}}"
+							],
+							"path": [
+								"{{reports-api-productsPath}}",
+								"{{reports-api-report-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports-API Create Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"test-report\",\r\n    \"description\": \"first description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-reports-route}}/{{reports-api-productsPath}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-reports-route}}"
+							],
+							"path": [
+								"{{reports-api-productsPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports-API Create Report",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"test-report\",\r\n    \"description\": \"second description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-reports-route}}/{{reports-api-productsPath}}/{{reports-api-report-id}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-reports-route}}"
+							],
+							"path": [
+								"{{reports-api-productsPath}}",
+								"{{reports-api-report-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports-API Delete Record",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-reports-route}}/{{reports-api-productsPath}}/{{reports-api-report-id}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-reports-route}}"
+							],
+							"path": [
+								"{{reports-api-productsPath}}",
+								"{{reports-api-report-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "____________________________________________________",
+					"request": {
+						"method": "OPTIONS",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "API-Gateway-HC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-gateway-base-url}}{{api-gateway-healthCheck}}",
+							"host": [
+								"{{api-gateway-base-url}}{{api-gateway-healthCheck}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "users-api-base-url",
+			"value": "https://localhost:5443/",
+			"type": "string"
+		},
+		{
+			"key": "users-api-healthCheck",
+			"value": "healthCheck",
+			"type": "string"
+		},
+		{
+			"key": "users-api-usersPath",
+			"value": "users",
+			"type": "string"
+		},
+		{
+			"key": "products-api-base-url",
+			"value": "https://localhost:6443/",
+			"type": "string"
+		},
+		{
+			"key": "products-api-healthCheck",
+			"value": "healthCheck",
+			"type": "string"
+		},
+		{
+			"key": "products-api-productsPath",
+			"value": "products",
+			"type": "string"
+		},
+		{
+			"key": "reports-api-base-url",
+			"value": "https://localhost:7443/",
+			"type": "string"
+		},
+		{
+			"key": "reports-api-healthCheck",
+			"value": "healthCheck",
+			"type": "string"
+		},
+		{
+			"key": "reports-api-productsPath",
+			"value": "reports",
+			"type": "string"
+		},
+		{
+			"key": "products-api-product-id",
+			"value": "1ecda05b-90d0-4d3a-9a34-fce09faf88b1",
+			"type": "string"
+		},
+		{
+			"key": "users-api-user-id",
+			"value": "73e1c473-bd84-4b1e-8826-dd53d9160a57",
+			"type": "string"
+		},
+		{
+			"key": "reports-api-report-id",
+			"value": "44f5e0a9-16ce-4817-b84d-fa8d02898fce",
+			"type": "string"
+		},
+		{
+			"key": "api-gateway-base-url",
+			"value": "https://localhost:10443/",
+			"type": "string"
+		},
+		{
+			"key": "api-gateway-users-route",
+			"value": "users-api",
+			"type": "string"
+		},
+		{
+			"key": "api-gateway-products-route",
+			"value": "products-api",
+			"type": "string"
+		},
+		{
+			"key": "api-gateway-reports-route",
+			"value": "reports-api",
+			"type": "string"
+		},
+		{
+			"key": "api-gateway-healthCheck",
+			"value": "healthCheck",
+			"type": "string"
+		}
+	]
+}

@@ -47,6 +47,7 @@ services:
       - Kestrel__Certificates__Default__Password=password
       - Kestrel__Certificates__Default__Path=/app/Certificate/localhost.pfx
       - EnforceHttpsRedirection=true
+      - DockerizedUrl=
     ports:
       - 9080:9080
       - 9443:9443

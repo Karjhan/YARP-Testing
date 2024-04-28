@@ -508,7 +508,7 @@
 								},
 								{
 									"key": "scope",
-									"value": "openid profile",
+									"value": "openid profile ",
 									"type": "text"
 								}
 							]
@@ -530,6 +530,16 @@
 				{
 					"name": "Users-API-HC",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -547,6 +557,16 @@
 				{
 					"name": "Users-API All Users",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {

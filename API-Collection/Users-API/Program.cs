@@ -1,4 +1,5 @@
 using Carter;
+using Commons.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Users_API.Application;
@@ -27,6 +28,8 @@ if (app.Configuration.GetValue("EnforceHttpsRedirection", true))
 {
     app.UseHttpsRedirection();
 }
+
+app.UseMiddleware<RequestLogHeadersMiddleware>();
 
 app.UseMiddleware<RequestLogContextMiddleware>();
 

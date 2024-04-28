@@ -16,11 +16,9 @@ public class RequestLogContextMiddleware
         _next = next;
     }
 
-    public Task Invoke(HttpContext context, ILogger<RequestLogContextMiddleware> logger)
+    public Task Invoke(HttpContext context)
     {
         string correlationId = GetCorrelationId(context);
-        
-        logger.LogInformation(JsonSerializer.Serialize(context.Request.Headers));
 
         using (LogContext.PushProperty("CorrelationId", correlationId))
         {

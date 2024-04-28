@@ -36,6 +36,11 @@ internal static class HostingExtensions
         builder.Services
             .AddIdentityServer(options =>
             {
+                var dockerizedUrl = configuration.GetSection("DockerizedUrl").Value;
+                if (!string.IsNullOrEmpty(dockerizedUrl))
+                {
+                    options.IssuerUri = dockerizedUrl;
+                }
                 options.Events.RaiseErrorEvents = true;
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;

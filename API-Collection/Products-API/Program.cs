@@ -1,4 +1,5 @@
 using Carter;
+using Commons.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Products_API.Application.Extensions;
 using Products_API.Infrastructure.DataContexts;
@@ -24,6 +25,8 @@ if (app.Configuration.GetValue("EnforceHttpsRedirection", true))
 {
     app.UseHttpsRedirection();
 }
+
+app.UseMiddleware<RequestLogHeadersMiddleware>();
 
 app.UseMiddleware<RequestLogContextMiddleware>();
 

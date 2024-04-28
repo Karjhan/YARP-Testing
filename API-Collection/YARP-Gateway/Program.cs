@@ -6,11 +6,6 @@ using YARP_Gateway.Extensions.YARP;
 
 var builder = WebApplication.CreateBuilder(args);
 
-IConfigurationRoot configurationRoot = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")
-    .AddEnvironmentVariables()
-    .Build();
-
 // Add logging with Serilog
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 

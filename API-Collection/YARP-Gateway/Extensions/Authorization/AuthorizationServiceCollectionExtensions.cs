@@ -13,6 +13,7 @@ public static class AuthorizationServiceCollectionExtensions
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
+                options.TokenValidationParameters.ValidIssuer = identityConfiguration!.IdentityUrl;
                 options.Authority = identityConfiguration!.IdentityUrl;
                 options.RequireHttpsMetadata = true;
                 options.TokenValidationParameters.ValidateIssuer = true;

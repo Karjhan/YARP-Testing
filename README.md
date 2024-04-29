@@ -41,17 +41,17 @@ The API collection includes:
     - Users-API -> https://localhost:5443/swagger
     - Products-API -> https://localhost:6443/swagger
     - Reports-API -> https://localhost:7443/swagger
+    
    Other than that, you can use the postman collection to play around with the api collection
 
 9. In order to register the docker database in the PGAdmin WebUI, you have to use host.docker.internal istead of localhost as host and the credentials you setup in the .env file:
 ![SS-PGAdmin-WebUI-1](./screenshots/SS-PGAdmin-WebUI-1.jpg)
-
 ![SS-PGAdmin-WebUI-2](./screenshots/SS-PGAdmin-WebUI-2.jpg)
 
 ## Visuals
 
 ### Users-API
-![SS_UsersAPI_Swagger](./screenshots/SS_UsersAPI_Swagger-2.jpg)
+![SS_UsersAPI_Swagger](./screenshots/SS_UsersAPI_Swagger.jpg)
 
 ### Products-API
 ![SS_ProductsAPI_Swagger](./screenshots/SS_ProductsAPI_Swagger.jpg)

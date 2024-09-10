@@ -36,7 +36,7 @@ The API collection includes:
     ```bash
         touch .env
     ```
-    If you decide to change the recommended ports for the docker configuration, then you will have to change them in the porjects config files as well.
+    If you decide to change the recommended ports for the docker configuration, then you will have to change them in the projects config files as well.
 7. If you have Docker installed, make sure you are in the project directory, open a terminal and type:
    ```bash
       docker-compose up --d
